@@ -1,4 +1,4 @@
-package com.example.littlelemon.composables
+package com.example.littlelemon.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
