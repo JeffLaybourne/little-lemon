@@ -202,8 +202,7 @@ fun Onboarding(navController: NavHostController) {
                     text = "Register",
                     fontSize = 18.sp,
                     fontFamily = karlaFontFamily,
-                    modifier = Modifier
-//                        .padding(5.dp)
+                    fontWeight = FontWeight.Bold
                 )
             }
 
@@ -211,9 +210,3 @@ fun Onboarding(navController: NavHostController) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun OnboardingPreview() {
-//    Onboarding(sharedPreferences)
-//}
