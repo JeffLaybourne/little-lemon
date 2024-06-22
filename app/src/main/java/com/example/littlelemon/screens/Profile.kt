@@ -1,16 +1,33 @@
 package com.example.littlelemon.screens
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.littlelemon.R
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
 
@@ -18,22 +35,143 @@ import com.example.littlelemon.navigation.Onboarding
 fun Profile(navController: NavHostController) {
     val context = LocalContext.current
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "Welcome to the ProfileScreen\n" +
-                    "isLoggedIn = ${sharedPreferences.getBoolean("isLoggedIn", false)}"
-        )
+    Column (modifier = Modifier.imePadding()) {
 
-        Button(onClick = {
-            sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
-            Toast.makeText(context, "Logging Out...",
-                Toast.LENGTH_LONG).show()
-            navController.navigate(Onboarding.route) }) {
-            Text(text = "Logout")
+        // Upper Section
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(.4f)
+        ){
+
+            /**
+             * LITTLE LEMON LOGO (HEADER)
+             */
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .weight(.3f)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Little Lemon Logo",
+                    modifier = Modifier
+                        .align(Alignment.Center)
+//                    .padding(10.dp)
+                )
+            }
+
+            /**
+             * PERSONAL INFORMATION BOX
+             */
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .weight(.3f),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Text(
+                    modifier = Modifier.padding(20.dp),
+                    text = "Personal information",
+                    fontFamily = karlaFontFamily,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
+        }
+
+        // Lower Section
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(.6f)
+                .background(Color.White)
+                .padding(start = 20.dp, end = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            /**
+             * INPUT FIELDS
+             */
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = sharedPreferences.getString("firstName", "")!!,
+                readOnly = true,
+                onValueChange = {  },
+                label = { Text(text = "First name") },
+                textStyle = TextStyle(
+                    fontSize = 18.sp,
+                    fontFamily = karlaFontFamily),
+                shape = RoundedCornerShape(10.dp),
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = sharedPreferences.getString("lastName", "")!!,
+                readOnly = true,
+                onValueChange = {  },
+                label = { Text(text = "Last name") },
+                textStyle = TextStyle(
+                    fontSize = 18.sp,
+                    fontFamily = karlaFontFamily),
+                shape = RoundedCornerShape(10.dp)
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = sharedPreferences.getString("email", "")!!,
+                readOnly = true,
+                onValueChange = {  },
+                label = { Text(text = "Email") },
+                textStyle = TextStyle(
+                    fontSize = 18.sp,
+                    fontFamily = karlaFontFamily),
+                shape = RoundedCornerShape(10.dp)
+            )
+
+            Spacer(modifier = Modifier.weight(0.8f))
+
+            Button(
+                onClick = {
+                    sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
+                    Toast.makeText(context, "Logging Out...",
+                        Toast.LENGTH_LONG).show()
+                    navController.navigate(Onboarding.route) {
+                        // Pop everything up to and including Onboarding.route off the back stack
+                        // before navigating to the Onboarding screen. This prevents access
+                        // to the Profile screen via back button presses.
+                        popUpTo(Onboarding.route) { inclusive = true }
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 40.dp)
+                    .height(50.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonColors(
+                    containerColor = Color(0xFFf4CE14),
+                    contentColor = Color(0xFF333333),
+                    // Not used in the project requirements.
+                    disabledContainerColor = Color(0xFFAFAFAF),
+                    disabledContentColor = Color(0xFFFFFFFF),
+                ),
+                border = BorderStroke(1.dp, Color(0xFFEE9972))
+            ) {
+                Text(
+                    text = "Log Out",
+                    fontSize = 18.sp,
+                    fontFamily = karlaFontFamily,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(0.2f))
         }
     }
 }
