@@ -27,19 +27,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
+import com.example.littlelemon.karlaFontFamily
 import com.example.littlelemon.navigation.Home
 import com.example.littlelemon.sharedPreferences
-
-val karlaFontFamily = FontFamily(
-    Font(R.font.karla_regular, FontWeight.Normal)
-)
 
 @Composable
 fun Onboarding(navController: NavHostController) {

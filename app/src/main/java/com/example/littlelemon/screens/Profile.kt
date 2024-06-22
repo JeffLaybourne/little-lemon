@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
+import com.example.littlelemon.karlaFontFamily
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
 
