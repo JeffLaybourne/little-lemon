@@ -179,7 +179,11 @@ fun Onboarding(navController: NavHostController) {
                         Toast.makeText(context, "Registration unsuccessful. " +
                                 "Please enter a valid email. (ex: John@example.com)", Toast.LENGTH_LONG).show()
                     } else {
+                        sharedPreferences.edit().putString("firstName", firstName).apply()
+                        sharedPreferences.edit().putString("lastName", lastName).apply()
+                        sharedPreferences.edit().putString("email", email).apply()
                         sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
+
                         Toast.makeText(context, "Registration successful!",
                             Toast.LENGTH_LONG).show()
                         navController.navigate(Home.route)
