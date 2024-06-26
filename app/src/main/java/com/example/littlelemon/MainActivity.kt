@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import androidx.room.Room
 import com.example.littlelemon.navigation.Navigation
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 import io.ktor.client.HttpClient
@@ -27,9 +28,10 @@ class MainActivity : ComponentActivity() {
 
         sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
 
-        lateinit var fetchedItems: List<MenuItemNetwork>
         lifecycleScope.launch(Dispatchers.IO) {
-            fetchedItems = fetchMenu()
+            if (database.menuItemDao().isEmpty()) {
+                saveMenuToDatabase(fetchMenu())
+            }
         }
 
         enableEdgeToEdge()
@@ -41,10 +43,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // TODO: the lines below will need to be updated for Room. They were filled in quickly
-    //  for network testing.
     /**
-     * NETWORK REQUEST TO DATABASE
+     * NETWORK AND NETWORK REQUEST
      */
     private val httpClient = HttpClient(Android) {
         install(ContentNegotiation) {
@@ -58,5 +58,17 @@ class MainActivity : ComponentActivity() {
             .body()
 
         return response.menu
+    }
+
+    /**
+     * DATABASE
+     */
+    private val database by lazy {
+        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database").build()
+    }
+
+    private fun saveMenuToDatabase(menuItemsNetwork: List<MenuItemNetwork>) {
+        val menuItemsRoom = menuItemsNetwork.map { it.toMenuItemRoom() }
+        database.menuItemDao().insertAll(*menuItemsRoom.toTypedArray())
     }
 }
