@@ -101,7 +101,7 @@ fun Home(navController: NavHostController) {
                 modifier = Modifier
                     // TODO: try 25.pd padding on other screen logo's
                     .weight(5.0f)
-                    .padding(25.dp)
+                    .padding(20.dp)
             )
             Box(modifier = Modifier
                 .fillMaxWidth()
@@ -112,7 +112,7 @@ fun Home(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.profile),
                     contentDescription = "User profile picture",
                     modifier = Modifier
-                        .padding(20.dp)
+                        .padding(15.dp)
                         .clickable { navController.navigate(Profile.route) }
                 )
             }
@@ -121,104 +121,106 @@ fun Home(navController: NavHostController) {
         /**
          * HERO BANNER
          */
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(PrimaryGreen)
-//                .weight(3.5f)
+                .weight(3.2f)
                 .padding(horizontal = 20.dp),
         ) {
-            Text(
-                text = "Little Lemon",
-                color = PrimaryYellow,
-                fontFamily = markaziFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 64.sp,
-                modifier = Modifier
-                    .height(54.dp)
-            )
-            Text(
-                text = "Chicago",
-                color = Color.White,
-                fontFamily = markaziFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 40.sp,
-                modifier = Modifier
-                    .height(40.dp)
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Row(modifier = Modifier
-                .fillMaxWidth()
-            ) {
+            items(count = 1) {
                 Text(
-                    text = "We are a family-owned Mediterranean restaurant, " +
-                        "focused on traditional recipes served with a modern twist.",
-                    color = Color.White,
-                    fontFamily = karlaFontFamily,
+                    text = "Little Lemon",
+                    color = PrimaryYellow,
+                    fontFamily = markaziFontFamily,
                     fontWeight = FontWeight.Medium,
-                    fontSize = 18.sp,
+                    fontSize = 64.sp,
                     modifier = Modifier
-                        .weight(7.0f)
+                        .height(54.dp)
+                )
+                Text(
+                    text = "Chicago",
+                    color = Color.White,
+                    fontFamily = markaziFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 40.sp,
+                    modifier = Modifier
+                        .height(40.dp)
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                ) {
+                    Text(
+                        text = "We are a family-owned Mediterranean restaurant, " +
+                                "focused on traditional recipes served with a modern twist.",
+                        color = Color.White,
+                        fontFamily = karlaFontFamily,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .weight(7.0f)
                     )
-                Image(
-                    painter = painterResource(id = R.drawable.hero_image),
-                    contentDescription = "Hero image",
-                    contentScale = ContentScale.Crop,
+                    Image(
+                        painter = painterResource(id = R.drawable.hero_image),
+                        contentDescription = "Hero image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .weight(3.0f)
+                            .height(125.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                    )
+                }
+
+                // SEARCH BOX
+                fun handleSearch() {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
+                    // For now we'll just use live filtering
+                }
+                OutlinedTextField(
+                    value = searchPhrase,
+                    onValueChange = { searchPhrase = it},
+                    shape = RoundedCornerShape(10.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedContainerColor = SecondaryWhiteSmoke,
+                        focusedContainerColor = Color.White,
+                        focusedBorderColor = PrimaryYellow,
+                        cursorColor = PrimaryGreen
+                    ),
+                    textStyle = TextStyle(
+                        fontSize = 18.sp,
+                        fontFamily = karlaFontFamily,
+                        lineHeight = 0.sp),
+                    placeholder = {Text(text = "Enter search phrase")},
+                    // Search Button
+                    leadingIcon = { IconButton(onClick = { handleSearch() }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Search,
+                            contentDescription = "Search Button"
+                        )
+                    }},
+                    // Clear button shows up if search field is not empty
+                    trailingIcon = { if(searchPhrase.isNotEmpty()) {
+                        IconButton(onClick = { searchPhrase = "" }) {
+                            Icon(
+                                imageVector = Icons.Outlined.Clear,
+                                contentDescription = "Clear Button"
+                            )
+                        }
+                    } },
                     modifier = Modifier
-                        .weight(3.0f)
-                        .height(125.dp)
-                        .clip(RoundedCornerShape(16.dp)),
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 10.dp),
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                    keyboardActions = KeyboardActions(onSearch = {
+                        handleSearch()
+                    })
                 )
             }
-
-            // SEARCH BOX
-            fun handleSearch() {
-                keyboardController?.hide()
-                focusManager.clearFocus()
-                // For now we'll just use live filtering
-            }
-            OutlinedTextField(
-                value = searchPhrase,
-                onValueChange = { searchPhrase = it},
-                shape = RoundedCornerShape(10.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedContainerColor = SecondaryWhiteSmoke,
-                    focusedContainerColor = Color.White,
-                    focusedBorderColor = PrimaryYellow,
-                    cursorColor = PrimaryGreen
-                ),
-                textStyle = TextStyle(
-                    fontSize = 18.sp,
-                    fontFamily = karlaFontFamily,
-                    lineHeight = 0.sp),
-                placeholder = {Text(text = "Enter search phrase")},
-                // Search Button
-                leadingIcon = { IconButton(onClick = { handleSearch() }) {
-                    Icon(
-                        imageVector = Icons.Outlined.Search,
-                        contentDescription = "Search Button"
-                    )
-                }},
-                // Clear button shows up if search field is not empty
-                trailingIcon = { if(searchPhrase.isNotEmpty()) {
-                    IconButton(onClick = { searchPhrase = "" }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Clear,
-                            contentDescription = "Clear Button"
-                        )
-                    }
-                } },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(vertical = 20.dp),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                keyboardActions = KeyboardActions(onSearch = {
-                    handleSearch()
-                })
-            )
         }
 
         /**

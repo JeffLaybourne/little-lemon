@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.OutlinedTextField
@@ -25,9 +27,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -35,6 +41,7 @@ import com.example.littlelemon.R
 import com.example.littlelemon.karlaFontFamily
 import com.example.littlelemon.navigation.Home
 import com.example.littlelemon.sharedPreferences
+import com.example.littlelemon.ui.theme.PrimaryGreen
 
 @Composable
 fun Onboarding(navController: NavHostController) {
@@ -42,6 +49,8 @@ fun Onboarding(navController: NavHostController) {
     var lastName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     val context = LocalContext.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
 
     Column (modifier = Modifier.imePadding()) {
 
@@ -66,7 +75,7 @@ fun Onboarding(navController: NavHostController) {
                     contentDescription = "Little Lemon Logo",
                     modifier = Modifier
                         .align(Alignment.Center)
-//                    .padding(10.dp)
+                        .padding(25.dp)
                 )
             }
 
@@ -76,7 +85,7 @@ fun Onboarding(navController: NavHostController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFF495E57))
+                    .background(PrimaryGreen)
                     .weight(.3f),
                 contentAlignment = Alignment.Center
             ) {
@@ -131,6 +140,12 @@ fun Onboarding(navController: NavHostController) {
                     fontSize = 18.sp,
                     fontFamily = karlaFontFamily),
                 shape = RoundedCornerShape(10.dp),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
+                })
             )
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -143,7 +158,13 @@ fun Onboarding(navController: NavHostController) {
                 textStyle = TextStyle(
                     fontSize = 18.sp,
                     fontFamily = karlaFontFamily),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(10.dp),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
+                })
             )
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -156,7 +177,15 @@ fun Onboarding(navController: NavHostController) {
                 textStyle = TextStyle(
                     fontSize = 18.sp,
                     fontFamily = karlaFontFamily),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(10.dp),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Email
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                    focusManager.clearFocus()
+                })
             )
 
             Spacer(modifier = Modifier.weight(0.8f))
