@@ -99,7 +99,6 @@ fun Home(navController: NavHostController) {
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Little Lemon Logo",
                 modifier = Modifier
-                    // TODO: try 25.pd padding on other screen logo's
                     .weight(5.0f)
                     .padding(20.dp)
             )
