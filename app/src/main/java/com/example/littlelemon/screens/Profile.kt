@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -31,6 +32,7 @@ import com.example.littlelemon.R
 import com.example.littlelemon.karlaFontFamily
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
+import com.example.littlelemon.ui.theme.PrimaryGreen
 import com.example.littlelemon.ui.theme.PrimaryYellow
 import com.example.littlelemon.ui.theme.SecondaryDarkGray
 import com.example.littlelemon.ui.theme.SecondaryDarkSlateGray
@@ -63,7 +65,23 @@ fun Profile(navController: NavHostController) {
                     contentDescription = "Little Lemon Logo",
                     modifier = Modifier
                         .align(Alignment.Center)
-//                    .padding(10.dp)
+                        .padding(25.dp)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(PrimaryGreen)
+                    .weight(.3f),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.profile),
+                    contentDescription = "User profile picture",
+                    modifier = Modifier
+                        .padding(15.dp)
+                        .clip(RoundedCornerShape(100.dp))
                 )
             }
 

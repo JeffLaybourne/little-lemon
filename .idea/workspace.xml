@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4bd95f-1a75-4c85-984c-cf4446c83715" name="Changes" comment="feat: Make the Home screen with all of its functionality.">
+    <list default="true" id="6f4bd95f-1a75-4c85-984c-cf4446c83715" name="Changes" comment="feat: implemented Room database for menu items.">
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
@@ -17,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Home.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Onboarding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Onboarding.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Profile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/screens/Profile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/littlelemon/ui/theme/Color.kt" afterDir="false" />
@@ -246,7 +247,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719376804347</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="chore: Add a couple TODO's and refactor some colors.">
+      <option name="closed" value="true" />
+      <created>1719604243609</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719604243609</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ui: various ui tweaks">
+      <option name="closed" value="true" />
+      <created>1719610528100</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719610528100</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,7 +313,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="chore" />
+                        <option value="feature" />
                       </list>
                     </value>
                   </entry>
@@ -315,6 +332,8 @@
     <MESSAGE value="build: Added dependencies for ktor, Room, ksp and serialization." />
     <MESSAGE value="feat: Added networking and Room dependencies. Made the network call to fetch the menu items." />
     <MESSAGE value="feat: implemented Room database for menu items." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented Room database for menu items." />
+    <MESSAGE value="chore: Add a couple TODO's and refactor some colors." />
+    <MESSAGE value="ui: various ui tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui: various ui tweaks" />
   </component>
 </project>
