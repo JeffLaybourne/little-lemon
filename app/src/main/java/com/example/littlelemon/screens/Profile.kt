@@ -31,6 +31,10 @@ import com.example.littlelemon.R
 import com.example.littlelemon.karlaFontFamily
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
+import com.example.littlelemon.ui.theme.PrimaryYellow
+import com.example.littlelemon.ui.theme.SecondaryDarkGray
+import com.example.littlelemon.ui.theme.SecondaryDarkSlateGray
+import com.example.littlelemon.ui.theme.SecondarySalmon
 
 @Composable
 fun Profile(navController: NavHostController) {
@@ -156,13 +160,13 @@ fun Profile(navController: NavHostController) {
                     .height(50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonColors(
-                    containerColor = Color(0xFFf4CE14),
-                    contentColor = Color(0xFF333333),
+                    containerColor = PrimaryYellow,
+                    contentColor = SecondaryDarkSlateGray,
                     // Not used in the project requirements.
-                    disabledContainerColor = Color(0xFFAFAFAF),
+                    disabledContainerColor = SecondaryDarkGray,
                     disabledContentColor = Color(0xFFFFFFFF),
                 ),
-                border = BorderStroke(1.dp, Color(0xFFEE9972))
+                border = BorderStroke(1.dp, SecondarySalmon)
             ) {
                 Text(
                     text = "Log Out",
