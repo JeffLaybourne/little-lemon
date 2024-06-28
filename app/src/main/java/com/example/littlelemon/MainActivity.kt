@@ -21,12 +21,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 lateinit var sharedPreferences: SharedPreferences
+// A global reference to use a single instance
+lateinit var appDatabase: AppDatabase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
+        appDatabase = database
 
         lifecycleScope.launch(Dispatchers.IO) {
             if (database.menuItemDao().isEmpty()) {

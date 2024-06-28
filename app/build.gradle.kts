@@ -54,12 +54,10 @@ android {
 
 dependencies {
 
+    implementation(libs.compose)
+    implementation(libs.androidx.runtime.livedata)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
-    // TODO: delete if Room works.
-    // This may have been causing the Duplicate class annotation error.
-    // Notice that it is referencing the same room.compiler as ksp on line 56.
-//    implementation(libs.androidx.room.compiler)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
