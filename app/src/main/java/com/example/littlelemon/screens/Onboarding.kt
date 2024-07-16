@@ -1,5 +1,6 @@
 package com.example.littlelemon.screens
 
+import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -201,16 +202,18 @@ fun Onboarding(navController: NavHostController) {
                         Toast.makeText(context, "Registration unsuccessful. " +
                                 "Please enter all data.", Toast.LENGTH_LONG).show()
 
-                    // A better solution would be to validate with regex.
-                    // However, this should satisfy the project req's for now.
-                    } else if (!email.contains('@') || !email.contains(".com")) {
+                    // Check for invalid email format.
+                    } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                         Toast.makeText(context, "Registration unsuccessful. " +
                                 "Please enter a valid email. (ex: John@example.com)", Toast.LENGTH_LONG).show()
-                    } else {
-                        sharedPreferences.edit().putString("firstName", firstName).apply()
-                        sharedPreferences.edit().putString("lastName", lastName).apply()
-                        sharedPreferences.edit().putString("email", email).apply()
-                        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
+
+                    } else {  // All credentials are valid. Continue with registration.
+                        sharedPreferences.edit()
+                            .putString("firstName", firstName)
+                            .putString("lastName", lastName)
+                            .putString("email", email)
+                            .putBoolean("isLoggedIn", true)
+                            .apply()
 
                         Toast.makeText(context, "Registration successful!",
                             Toast.LENGTH_LONG).show()
