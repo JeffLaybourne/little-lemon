@@ -23,9 +23,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-// TODO: Look into getting sharedPreferences from the screens
-//  using context.getSharedPreferences. Verify that it's the
-//  same instance. If that works well then move this declaration down.
+// A global reference for the composables to use
 lateinit var sharedPreferences: SharedPreferences
 // A global reference to use a single instance
 // TODO: make a companion object to return a singleton from Database.
