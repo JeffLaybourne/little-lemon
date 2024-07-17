@@ -1,5 +1,6 @@
 package com.example.littlelemon.screens
 
+import android.content.Context.MODE_PRIVATE
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
@@ -41,7 +42,6 @@ import androidx.navigation.NavHostController
 import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.karlaFontFamily
 import com.example.littlelemon.navigation.Home
-import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.ui.theme.PrimaryGreen
 import com.example.littlelemon.ui.theme.PrimaryYellow
 import com.example.littlelemon.ui.theme.SecondaryDarkGray
@@ -56,6 +56,7 @@ fun Onboarding(navController: NavHostController) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
+    val sharedPreferences = context.getSharedPreferences("Little Lemon", MODE_PRIVATE)
 
     Column (modifier = Modifier.imePadding()) {
 

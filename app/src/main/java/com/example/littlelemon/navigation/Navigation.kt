@@ -1,14 +1,18 @@
 package com.example.littlelemon.navigation
 
+import android.app.Activity.MODE_PRIVATE
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.littlelemon.screens.*
-import com.example.littlelemon.sharedPreferences
 
 @Composable
 fun Navigation(navController: NavHostController) {
+    val context = LocalContext.current
+    val sharedPreferences = context.getSharedPreferences("Little Lemon", MODE_PRIVATE)
+
     NavHost(
         navController = navController,
         startDestination =

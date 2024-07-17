@@ -1,5 +1,6 @@
 package com.example.littlelemon.screens
 
+import android.content.Context.MODE_PRIVATE
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -30,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.karlaFontFamily
-import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
 import com.example.littlelemon.ui.theme.PrimaryGreen
 import com.example.littlelemon.ui.theme.PrimaryYellow
@@ -41,6 +41,7 @@ import com.example.littlelemon.ui.theme.SecondarySalmon
 @Composable
 fun Profile(navController: NavHostController) {
     val context = LocalContext.current
+    val sharedPreferences = context.getSharedPreferences("Little Lemon", MODE_PRIVATE)
 
     Column (modifier = Modifier.imePadding()) {
 

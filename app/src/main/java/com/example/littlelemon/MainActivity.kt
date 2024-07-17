@@ -23,10 +23,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-// TODO: Look into getting sharedPreferences from the screens
-//  using context.getSharedPreferences. Verify that it's the
-//  same instance. If that works well then move this declaration down.
-lateinit var sharedPreferences: SharedPreferences
 // A global reference to use a single instance
 // TODO: make a companion object to return a singleton from Database.
 //  This way we can avoid doing this below.
@@ -36,7 +32,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
         appDatabase = database
 
         lifecycleScope.launch(Dispatchers.IO) {
