@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
-import com.example.littlelemon.karlaFontFamily
+import com.example.littlelemon.ui.theme.karlaFontFamily
 import com.example.littlelemon.navigation.Home
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.ui.theme.PrimaryGreen
@@ -143,7 +143,8 @@ fun Onboarding(navController: NavHostController) {
                 label = { Text(text = "First name") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp),
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done),
@@ -162,7 +163,8 @@ fun Onboarding(navController: NavHostController) {
                 label = { Text(text = "Last name") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp),
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done),
@@ -181,7 +183,8 @@ fun Onboarding(navController: NavHostController) {
                 label = { Text(text = "Email") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp),
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done,

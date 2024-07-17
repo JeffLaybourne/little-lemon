@@ -53,11 +53,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.littlelemon.MenuItemRoom
+import com.example.littlelemon.data.MenuItemRoom
 import com.example.littlelemon.R
 import com.example.littlelemon.appDatabase
-import com.example.littlelemon.karlaFontFamily
-import com.example.littlelemon.markaziFontFamily
+import com.example.littlelemon.ui.theme.karlaFontFamily
+import com.example.littlelemon.ui.theme.markaziFontFamily
 import com.example.littlelemon.navigation.Profile
 import com.example.littlelemon.ui.theme.PrimaryGreen
 import com.example.littlelemon.ui.theme.PrimaryYellow

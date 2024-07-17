@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
-import com.example.littlelemon.karlaFontFamily
+import com.example.littlelemon.ui.theme.karlaFontFamily
 import com.example.littlelemon.sharedPreferences
 import com.example.littlelemon.navigation.Onboarding
 import com.example.littlelemon.ui.theme.PrimaryGreen
@@ -126,7 +126,8 @@ fun Profile(navController: NavHostController) {
                 label = { Text(text = "First name") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp),
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -140,7 +141,8 @@ fun Profile(navController: NavHostController) {
                 label = { Text(text = "Last name") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -154,7 +156,8 @@ fun Profile(navController: NavHostController) {
                 label = { Text(text = "Email") },
                 textStyle = TextStyle(
                     fontSize = 18.sp,
-                    fontFamily = karlaFontFamily),
+                    fontFamily = karlaFontFamily
+                ),
                 shape = RoundedCornerShape(10.dp)
             )
 
