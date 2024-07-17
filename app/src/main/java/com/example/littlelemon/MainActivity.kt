@@ -8,6 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
+import com.example.littlelemon.data.AppDatabase
+import com.example.littlelemon.data.MenuItemNetwork
+import com.example.littlelemon.data.MenuNetworkData
 import com.example.littlelemon.navigation.Navigation
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 import io.ktor.client.HttpClient
