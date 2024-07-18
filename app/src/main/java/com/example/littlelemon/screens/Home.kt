@@ -55,7 +55,6 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.littlelemon.data.MenuItemRoom
 import com.example.littlelemon.R
-import com.example.littlelemon.appDatabase
 import com.example.littlelemon.ui.theme.karlaFontFamily
 import com.example.littlelemon.ui.theme.markaziFontFamily
 import com.example.littlelemon.navigation.Profile
@@ -63,15 +62,17 @@ import com.example.littlelemon.ui.theme.PrimaryGreen
 import com.example.littlelemon.ui.theme.PrimaryYellow
 import com.example.littlelemon.ui.theme.SecondaryWhiteSmoke
 import androidx.compose.ui.platform.LocalContext
+import com.example.littlelemon.data.AppDatabase
 
 @Composable
 fun Home(navController: NavHostController) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
+    val database = AppDatabase.getDatabase(context)
 
     // Fetch menuItems from appDatabase
-    val unfilteredMenuItems by appDatabase.menuItemDao().getAll().observeAsState(initial = emptyList())
+    val unfilteredMenuItems by database.menuItemDao().getAll().observeAsState(initial = emptyList())
     var searchPhrase by remember { mutableStateOf("") }
 
     Column(modifier= Modifier

@@ -7,7 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import androidx.room.Room
 import com.example.littlelemon.data.AppDatabase
 import com.example.littlelemon.data.MenuItemNetwork
 import com.example.littlelemon.data.MenuNetworkData
@@ -25,18 +24,21 @@ import kotlinx.coroutines.launch
 
 // A global reference for the composables to use
 lateinit var sharedPreferences: SharedPreferences
-// A global reference to use a single instance
-// TODO: make a companion object to return a singleton from Database.
-//  This way we can avoid doing this below.
-lateinit var appDatabase: AppDatabase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
-        appDatabase = database
 
+        /**
+         * DATABASE
+         */
+        val database = AppDatabase.getDatabase(this)
+        fun saveMenuToDatabase(menuItemsNetwork: List<MenuItemNetwork>) {
+            val menuItemsRoom = menuItemsNetwork.map { it.toMenuItemRoom() }
+            database.menuItemDao().insertAll(*menuItemsRoom.toTypedArray())
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             if (database.menuItemDao().isEmpty()) {
                 saveMenuToDatabase(fetchMenu())
@@ -67,17 +69,5 @@ class MainActivity : ComponentActivity() {
             .body()
 
         return response.menu
-    }
-
-    /**
-     * DATABASE
-     */
-    private val database by lazy {
-        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database").build()
-    }
-
-    private fun saveMenuToDatabase(menuItemsNetwork: List<MenuItemNetwork>) {
-        val menuItemsRoom = menuItemsNetwork.map { it.toMenuItemRoom() }
-        database.menuItemDao().insertAll(*menuItemsRoom.toTypedArray())
     }
 }
