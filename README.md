@@ -1,4 +1,4 @@
-This is the capstone project for Coursera's Meta Android Developer Professional Certificate.
+This is my capstone project for Coursera's Meta Android Developer Professional Certificate.
 
 Wireframe:  https://github.com/JeffLaybourne/little-lemon/blob/main/Android%20Capstone%20-%20Wireframe.jpg
 
